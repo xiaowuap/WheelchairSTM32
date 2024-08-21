@@ -139,7 +139,7 @@ void Key(void)
 u8 Turn_Off( int voltage)
 {
 	    u8 temp;
-			if(voltage<1110)//电池电压过低关闭电机
+			if(voltage<9)//电池电压过低关闭电机
 			{	                                                
       temp=1;      
       PWMA=0;
