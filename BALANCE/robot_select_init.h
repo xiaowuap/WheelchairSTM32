@@ -50,6 +50,7 @@ typedef struct
 //编码器精度
 #define		Photoelectric_500 500
 #define	  Hall_13 13
+#define	  Hall_8  8
 
 //Diameter of trolley tire
 //小车轮胎直径
