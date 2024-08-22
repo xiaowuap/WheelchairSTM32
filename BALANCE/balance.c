@@ -438,7 +438,7 @@ u8 Turn_Off( int voltage)
 {
 		u8 temp;
 	  //static int stop_count, enable_count;
-		if(voltage<20||EN==0||Flag_Stop==1)
+		if(voltage<10||EN==0||Flag_Stop==1)
 		{	                                                
 			temp=1;      
 			PWMA=0;
