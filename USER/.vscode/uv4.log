@@ -1,0 +1,13 @@
+Build target 'FreeRTOS'
+compiling can.c...
+..\MPU6050\I2C.h(25): warning:  #47-D: incompatible redefinition of macro "__ARMCLIB_VERSION" (declared at line 22 of "C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h")
+  #define __ARMCLIB_VERSION 5060044
+..\HARDWARE\can.c(336): error:  #254: type name is not allowed
+                for(u8 i=0;i<8;i++) 
+..\HARDWARE\can.c(336): error:  #65: expected a ";"
+                for(u8 i=0;i<8;i++) 
+..\HARDWARE\can.c(336): error:  #20: identifier "i" is undefined
+                for(u8 i=0;i<8;i++) 
+..\HARDWARE\can.c: 1 warning, 3 errors
+"..\OBJ\WHEELTEC.axf" - 3 Error(s), 1 Warning(s).
+Target not created.

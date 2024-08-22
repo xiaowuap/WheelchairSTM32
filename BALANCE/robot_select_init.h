@@ -34,6 +34,7 @@ typedef struct
 #define   TOP_DIFF_wheelspacing            0.329f
 #define   FOUR_WHEEL_DIFF_BS_wheelspacing  0.573f
 #define   FOUR_WHEEL_DIFF_DL_wheelspacing  0.573f
+#define   Wheelchair_DIFF_wheelspacing     60.00f
 
 //Motor_gear_ratio
 //电机减速比
@@ -43,6 +44,7 @@ typedef struct
 #define   MD36N_71    71
 #define   MD60N_18    18
 #define   MD60N_47    47
+#define   MDN_27_3    27.3
 
 //Number_of_encoder_lines
 //编码器精度
@@ -56,6 +58,7 @@ typedef struct
 #define   TOP_AKM_DL_Tyre_Diameter      0.254
 #define   TOP_DIFF_Tyre_Diameter        0.125
 #define   FOUR_WHEEL_DIFF_Tyre_Diameter 0.215
+#define   Wheelchair_Tyre_Diameter        30.000
 
 //Mecanum wheel tire diameter series
 //麦轮轮胎直径
