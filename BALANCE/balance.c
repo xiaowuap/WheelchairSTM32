@@ -850,6 +850,10 @@ void Get_Velocity_Form_Encoder(void)
 	//编码器原始数据转换为车轮速度，单位m/s
 	MOTOR_A.Encoder= Encoder_A_pr*CONTROL_FREQUENCY/Encoder_precision*Wheel_perimeter;
 	MOTOR_B.Encoder= Encoder_B_pr*CONTROL_FREQUENCY/Encoder_precision*Wheel_perimeter;
+/*	if(Car_Mode==6){
+	  MOTOR_A.Encoder= MOTOR_A.Target/2;
+	  MOTOR_B.Encoder= MOTOR_B.Target/2;
+	}*/
 }
 /**************************************************************************
 Function: Smoothing the target velocity
