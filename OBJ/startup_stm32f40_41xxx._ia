@@ -1,7 +1,0 @@
---cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"
--I D:\WheelchairSTM32\USER\RTE
--I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1
--I C:\Keil_v5\ARM\CMSIS\Include
--I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Device\Include
---pd "__UVISION_VERSION SETA 514" --pd "STM32F407xx SETA 1"
---list ..\obj\startup_stm32f40_41xxx.lst --xref -o ..\obj\startup_stm32f40_41xxx.o --depend ..\obj\startup_stm32f40_41xxx.d "..\CORE\startup_stm32f40_41xxx.s"
