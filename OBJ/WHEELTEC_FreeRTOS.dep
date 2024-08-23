@@ -68,7 +68,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -223,7 +223,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -299,7 +299,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -375,7 +375,7 @@ I (..\HARDWARE\timer.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -451,7 +451,7 @@ I (..\HARDWARE\timer.h)(0x66C5C019)
 I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -527,7 +527,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -603,7 +603,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -679,7 +679,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -756,7 +756,7 @@ I (..\HARDWARE\timer.h)(0x66C5C019)
 I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -832,7 +832,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -908,7 +908,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -985,7 +985,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -1964,7 +1964,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -1972,7 +1972,7 @@ I (..\MPU6050\MPU6050.h)(0x66C5C019)
 I (..\AutoRecharge\AutoRecharge.h)(0x66C5C019)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
-F (..\BALANCE\balance.c)(0x66C70251)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\CORE -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\USER -I..\HARDWARE\LED -I..\FWLIB\inc -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM4F -I..\BALANCE -I..\HARDWARE -I..\ICM20948 -I..\HUB_DRIVER -I..\MPU6050 -I..\AutoRecharge-I D:\WheelchairSTM32\USER\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Device\Include-D__UVISION_VERSION="514" -DSTM32F407xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__TARGET_FPU_VFP -DARM_MATH_CM4 -D__CC_ARM-o ..\obj\balance.o --omf_browse ..\obj\balance.crf --depend ..\obj\balance.d)
+F (..\BALANCE\balance.c)(0x66C84055)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\CORE -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\USER -I..\HARDWARE\LED -I..\FWLIB\inc -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM4F -I..\BALANCE -I..\HARDWARE -I..\ICM20948 -I..\HUB_DRIVER -I..\MPU6050 -I..\AutoRecharge-I D:\WheelchairSTM32\USER\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Device\Include-D__UVISION_VERSION="514" -DSTM32F407xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__TARGET_FPU_VFP -DARM_MATH_CM4 -D__CC_ARM-o ..\obj\balance.o --omf_browse ..\obj\balance.crf --depend ..\obj\balance.d)
 I (..\BALANCE\balance.h)(0x66C5C019)
 I (..\SYSTEM\sys\sys.h)(0x66C5C019)
 I (..\USER\stm32f4xx.h)(0x66C5C019)
@@ -2040,7 +2040,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -2048,8 +2048,8 @@ I (..\MPU6050\MPU6050.h)(0x66C5C019)
 I (..\AutoRecharge\AutoRecharge.h)(0x66C5C019)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
-F (..\BALANCE\robot_select_init.c)(0x66C8336F)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\CORE -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\USER -I..\HARDWARE\LED -I..\FWLIB\inc -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM4F -I..\BALANCE -I..\HARDWARE -I..\ICM20948 -I..\HUB_DRIVER -I..\MPU6050 -I..\AutoRecharge-I D:\WheelchairSTM32\USER\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Device\Include-D__UVISION_VERSION="514" -DSTM32F407xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__TARGET_FPU_VFP -DARM_MATH_CM4 -D__CC_ARM-o ..\obj\robot_select_init.o --omf_browse ..\obj\robot_select_init.crf --depend ..\obj\robot_select_init.d)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+F (..\BALANCE\robot_select_init.c)(0x66C8449B)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\CORE -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\USER -I..\HARDWARE\LED -I..\FWLIB\inc -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM4F -I..\BALANCE -I..\HARDWARE -I..\ICM20948 -I..\HUB_DRIVER -I..\MPU6050 -I..\AutoRecharge-I D:\WheelchairSTM32\USER\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Device\Include-D__UVISION_VERSION="514" -DSTM32F407xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__TARGET_FPU_VFP -DARM_MATH_CM4 -D__CC_ARM-o ..\obj\robot_select_init.o --omf_browse ..\obj\robot_select_init.crf --depend ..\obj\robot_select_init.d)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\SYSTEM\sys\sys.h)(0x66C5C019)
 I (..\USER\stm32f4xx.h)(0x66C5C019)
 I (..\CORE\core_cm4.h)(0x66C5C019)
@@ -2192,7 +2192,7 @@ I (..\HARDWARE\timer.h)(0x66C5C019)
 I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
@@ -2269,7 +2269,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
 I (..\MPU6050\MPU6050.h)(0x66C5C019)
@@ -2345,7 +2345,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\MPU6050\I2C.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\MPU6050\MPU6050.h)(0x66C5C019)
@@ -2422,7 +2422,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
 I (..\AutoRecharge\AutoRecharge.h)(0x66C5C019)
@@ -2497,7 +2497,7 @@ I (..\HARDWARE\encoder.h)(0x66C5C019)
 I (..\BALANCE\show.h)(0x66C5C019)
 I (..\HARDWARE\pstwo.h)(0x66C5C019)
 I (..\HARDWARE\key.h)(0x66C5C019)
-I (..\BALANCE\robot_select_init.h)(0x66C8334D)
+I (..\BALANCE\robot_select_init.h)(0x66C84835)
 I (..\HUB_DRIVER\HubDriver.h)(0x66C5C019)
 I (..\HUB_DRIVER\HubDriverCan.h)(0x66C5C019)
 I (..\MPU6050\MPU6050.h)(0x66C5C019)

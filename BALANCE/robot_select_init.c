@@ -44,7 +44,8 @@ void Robot_Select(void)
 		
 		if (Car_Mode==4)  Robot_Init(FOUR_WHEEL_DIFF_DL_wheelspacing, 0, MD60N_18, Photoelectric_500, FOUR_WHEEL_DIFF_Tyre_Diameter);//FOUR_WHEEL_DIFF_BS_18 - 四轮两驱独立悬挂常规型 //DL: Independent suspension
 		if (Car_Mode==5)  Robot_Init(FOUR_WHEEL_DIFF_DL_wheelspacing, 0, MD60N_47, Photoelectric_500, FOUR_WHEEL_DIFF_Tyre_Diameter);//FOUR_WHEEL_DIFF_BS_47 - 四轮两驱独立悬挂重载型
-		if (Car_Mode==6)  Robot_Init(Wheelchair_DIFF_wheelspacing,    0, MDN_1, Hall_8,            Wheelchair_Tyre_Diameter);
+		if (Car_Mode==6)  Robot_Init(Wheelchair_DIFF_wheelspacing,    0, MDN1,  Hall_8,            Wheelchair_Tyre_Diameter);
+		//Velocity_KP=400,Velocity_KI=100;
   }
 	#endif
 }
@@ -61,7 +62,7 @@ Output  : none
 void Robot_Init(float wheelspacing,float axlespacing,int gearratio,int Accuracy,float tyre_diameter) 
 {
   Robot_Parament.WheelSpacing=wheelspacing;   //Wheelspacing 轮距  
-	Robot_Parament.AxleSpacing=axlespacing;     //Axlespacing 轴距
+  Robot_Parament.AxleSpacing=axlespacing;     //Axlespacing 轴距
   Robot_Parament.GearRatio=gearratio;         //motor_gear_ratio //电机减速比
   Robot_Parament.EncoderAccuracy=Accuracy;    //Number_of_encoder_lines //编码器精度(编码器线数)
   Robot_Parament.WheelDiameter=tyre_diameter; //Diameter of driving wheel //主动轮轮径
@@ -72,7 +73,7 @@ void Robot_Init(float wheelspacing,float axlespacing,int gearratio,int Accuracy,
 	//Driving wheel circumference //主动轮周长	
 	Wheel_perimeter=Robot_Parament.WheelDiameter*PI; 
 	//Wheelspacing 轮距 
-  Wheel_spacing=Robot_Parament.WheelSpacing;  
- //Wheel_axlespacing (Wheel_axlespacing is not required for motion analysis of differential trolleys) //轴距(差速小车的运动分析不需要轴距)	
+    Wheel_spacing=Robot_Parament.WheelSpacing;  
+    //Wheel_axlespacing (Wheel_axlespacing is not required for motion analysis of differential trolleys) //轴距(差速小车的运动分析不需要轴距)	
 	Axle_spacing=Robot_Parament.AxleSpacing;   
 }
