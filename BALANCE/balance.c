@@ -204,8 +204,8 @@ void Drive_Motor(float Vx,float Vz)
 		#elif Diff_Car
 		
 		//速度限幅
-		//Vx=target_limit_float(Vx,-amplitude,amplitude);
-		//Vz=target_limit_float(Vz,-amplitude,amplitude);
+		Vx=target_limit_float(Vx,-amplitude,amplitude);
+		Vz=target_limit_float(Vz,-amplitude,amplitude);
 		
 		if(Allow_Recharge==0)
 			Smooth_control(Vx,Vz); //Smoothing the input speed //对输入速度进行平滑处理
@@ -214,18 +214,16 @@ void Drive_Motor(float Vx,float Vz)
 			smooth_control.VZ = Vz;
 		
 		//平滑后的速度
-		//Vx=smooth_control.VX;
-		//Vz=smooth_control.VZ;
+		Vx=smooth_control.VX;
+		Vz=smooth_control.VZ;
 		
 		//Inverse kinematics //运动学逆解
-		//MOTOR_A.Target  = Vx - Vz * Wheel_spacing / 2.0f; 
-		//MOTOR_B.Target =  Vx + Vz * Wheel_spacing / 2.0f; 
+		MOTOR_A.Target  = Vx - Vz * Wheel_spacing / 2.0f; 
+		MOTOR_B.Target =  Vx + Vz * Wheel_spacing / 2.0f; 
 		
 		//Wheel (motor) target speed limit //车轮(电机)目标速度限幅
-		//MOTOR_A.Target=target_limit_float( MOTOR_A.Target,-amplitude,amplitude);
-		//MOTOR_B.Target=target_limit_float( MOTOR_B.Target,-amplitude,amplitude);
-		MOTOR_A.Target=Vx*100;
-		MOTOR_B.Target=Vz*100;
+		MOTOR_A.Target=target_limit_float( MOTOR_A.Target,-amplitude,amplitude);
+		MOTOR_B.Target=target_limit_float( MOTOR_B.Target,-amplitude,amplitude);
 		
 		#endif
 }
@@ -322,8 +320,12 @@ void Balance_task(void *pvParameters)
 					 //速度闭环控制计算各电机PWM值，PWM代表车轮实际转速					 
 					 //MOTOR_A.Motor_Pwm=Incremental_PI_A(MOTOR_A.Encoder, MOTOR_A.Target);
 					 //MOTOR_B.Motor_Pwm=Incremental_PI_B(MOTOR_B.Encoder, MOTOR_B.Target);
-					 MOTOR_A.Motor_Pwm=MOTOR_A.Target;
-					 MOTOR_B.Motor_Pwm=MOTOR_B.Target;
+					 if( MOTOR_A.Target>0) MOTOR_A.Motor_Pwm=16800;
+	 				 if( MOTOR_A.Target<0) MOTOR_A.Motor_Pwm=-16800;
+					 if( MOTOR_A.Target==0) MOTOR_A.Motor_Pwm=0;
+					 if( MOTOR_B.Target>0) MOTOR_B.Motor_Pwm=16800;
+	 				 if( MOTOR_B.Target<0) MOTOR_B.Motor_Pwm=-16800;
+					 if( MOTOR_B.Target==0) MOTOR_B.Motor_Pwm=0;
 					 
 					//检测是否需要清除PWM并自动执行清理
 					//auto_pwm_clear();

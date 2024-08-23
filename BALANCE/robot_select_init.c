@@ -45,7 +45,7 @@ void Robot_Select(void)
 		if (Car_Mode==4)  Robot_Init(FOUR_WHEEL_DIFF_DL_wheelspacing, 0, MD60N_18, Photoelectric_500, FOUR_WHEEL_DIFF_Tyre_Diameter);//FOUR_WHEEL_DIFF_BS_18 - ���������������ҳ����� //DL: Independent suspension
 		if (Car_Mode==5)  Robot_Init(FOUR_WHEEL_DIFF_DL_wheelspacing, 0, MD60N_47, Photoelectric_500, FOUR_WHEEL_DIFF_Tyre_Diameter);//FOUR_WHEEL_DIFF_BS_47 - ����������������������
 		if (Car_Mode==6)  Robot_Init(Wheelchair_DIFF_wheelspacing,    0, MDN1,  Hall_8,            Wheelchair_Tyre_Diameter),
-		Velocity_KP=0,Velocity_KI=2.2;
+		Velocity_KP=0,Velocity_KI=20;
   }
 	#endif
 }
