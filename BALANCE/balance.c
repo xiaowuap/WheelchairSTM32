@@ -977,7 +977,7 @@ void auto_pwm_clear(void)
 			if( wait_clear_times >= 250 )
 			{
 				//小车在水平面上时才标记清空pwm，防止小车在斜坡上运动出现溜坡
-				/if( diff > 8.8f )	start_clear = 1,clear_state = 0;//开启清除pwm
+				if( diff > 8.8f )	start_clear = 1,clear_state = 0;//开启清除pwm
 				else clear_done_once = 1;//小车在斜坡上，标记已完成清除
 				
 				start_check_flag = 0;
