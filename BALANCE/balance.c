@@ -318,17 +318,17 @@ void Balance_task(void *pvParameters)
 					 //Speed closed-loop control to calculate the PWM value of each motor, 
 					 //PWM represents the actual wheel speed					 
 					 //速度闭环控制计算各电机PWM值，PWM代表车轮实际转速					 
-					 //MOTOR_A.Motor_Pwm=Incremental_PI_A(MOTOR_A.Encoder, MOTOR_A.Target);
-					 //MOTOR_B.Motor_Pwm=Incremental_PI_B(MOTOR_B.Encoder, MOTOR_B.Target);
-					 if( MOTOR_A.Target>0) MOTOR_A.Motor_Pwm=16800;
-	 				 if( MOTOR_A.Target<0) MOTOR_A.Motor_Pwm=-16800;
-					 if( MOTOR_A.Target==0) MOTOR_A.Motor_Pwm=0;
-					 if( MOTOR_B.Target>0) MOTOR_B.Motor_Pwm=16800;
-	 				 if( MOTOR_B.Target<0) MOTOR_B.Motor_Pwm=-16800;
-					 if( MOTOR_B.Target==0) MOTOR_B.Motor_Pwm=0;
+					 MOTOR_A.Motor_Pwm=Incremental_PI_A(MOTOR_A.Encoder, MOTOR_A.Target);
+					 MOTOR_B.Motor_Pwm=Incremental_PI_B(MOTOR_B.Encoder, MOTOR_B.Target);
+					 //if( MOTOR_A.Target>0) MOTOR_A.Motor_Pwm=16800;
+	 				 //if( MOTOR_A.Target<0) MOTOR_A.Motor_Pwm=-16800;
+					 //if( MOTOR_A.Target==0) MOTOR_A.Motor_Pwm=0;
+					 //if( MOTOR_B.Target>0) MOTOR_B.Motor_Pwm=16800;
+	 				 //if( MOTOR_B.Target<0) MOTOR_B.Motor_Pwm=-16800;
+					 //if( MOTOR_B.Target==0) MOTOR_B.Motor_Pwm=0;
 					 
 					//检测是否需要清除PWM并自动执行清理
-					//auto_pwm_clear();
+					auto_pwm_clear();
 					
 					 #if Akm_Car
 					 //Set different PWM control polarity according to different car models
@@ -526,7 +526,7 @@ int Incremental_PI_A (float Encoder,float Target)
 	 static float Bias,Pwm,Last_bias;
 	 Bias=Target-Encoder; //Calculate the deviation //计算偏差
 	 Pwm+=Velocity_KP*(Bias-Last_bias)+Velocity_KI*Bias; 
-	if(Pwm>16800)Pwm=16800;`
+	 if(Pwm>16800)Pwm=16800;
 	 if(Pwm<-16800)Pwm=-16800;
 	 Last_bias=Bias; //Save the last deviation //保存上一次偏差 
 	
@@ -977,8 +977,8 @@ void auto_pwm_clear(void)
 			if( wait_clear_times >= 250 )
 			{
 				//小车在水平面上时才标记清空pwm，防止小车在斜坡上运动出现溜坡
-				/**if( diff > 8.8f )**/	start_clear = 1,clear_state = 0;//开启清除pwm
-				/**else clear_done_once = 1;//小车在斜坡上，标记已完成清除**/
+				/if( diff > 8.8f )	start_clear = 1,clear_state = 0;//开启清除pwm
+				else clear_done_once = 1;//小车在斜坡上，标记已完成清除
 				
 				start_check_flag = 0;
 			}
