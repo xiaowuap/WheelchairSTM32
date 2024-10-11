@@ -302,7 +302,7 @@ void Balance_task(void *pvParameters)
 				if(CONTROL_DELAY<Time_count && Time_count<CONTROL_DELAY+200) //Advance 1 seconds to test //前进1秒进行测试
 				{
 					Drive_Motor(0.2, 0);
-					robot_mode_check(); //Detection function //检测函数
+					//robot_mode_check(); //Detection function //检测函数
 				}
 				else if(CONTROL_DELAY+200<Time_count && Time_count<CONTROL_DELAY+230)
 				{
@@ -318,11 +318,17 @@ void Balance_task(void *pvParameters)
 					 //Speed closed-loop control to calculate the PWM value of each motor, 
 					 //PWM represents the actual wheel speed					 
 					 //速度闭环控制计算各电机PWM值，PWM代表车轮实际转速					 
-					 MOTOR_A.Motor_Pwm=Incremental_PI_A(MOTOR_A.Encoder, MOTOR_A.Target);
-					 MOTOR_B.Motor_Pwm=Incremental_PI_B(MOTOR_B.Encoder, MOTOR_B.Target);
+					 //MOTOR_A.Motor_Pwm=Incremental_PI_A(MOTOR_A.Encoder, MOTOR_A.Target);
+					 //MOTOR_B.Motor_Pwm=Incremental_PI_B(MOTOR_B.Encoder, MOTOR_B.Target);
+					 if( MOTOR_A.Target>0) MOTOR_A.Motor_Pwm=16800;
+	 				 if( MOTOR_A.Target<0) MOTOR_A.Motor_Pwm=-16800;
+					 if( MOTOR_A.Target==0) MOTOR_A.Motor_Pwm=0;
+					 if( MOTOR_B.Target>0) MOTOR_B.Motor_Pwm=16800;
+	 				 if( MOTOR_B.Target<0) MOTOR_B.Motor_Pwm=-16800;
+					 if( MOTOR_B.Target==0) MOTOR_B.Motor_Pwm=0;
 					 
 					//检测是否需要清除PWM并自动执行清理
-					auto_pwm_clear();
+					//auto_pwm_clear();
 					
 					 #if Akm_Car
 					 //Set different PWM control polarity according to different car models
@@ -398,7 +404,7 @@ void Limit_Pwm(int amplitude)
 {	
 	    MOTOR_A.Motor_Pwm=target_limit_float(MOTOR_A.Motor_Pwm,-amplitude,amplitude);
 	    MOTOR_B.Motor_Pwm=target_limit_float(MOTOR_B.Motor_Pwm,-amplitude,amplitude);
-		  MOTOR_C.Motor_Pwm=target_limit_float(MOTOR_C.Motor_Pwm,-amplitude,amplitude);
+		MOTOR_C.Motor_Pwm=target_limit_float(MOTOR_C.Motor_Pwm,-amplitude,amplitude);
 	    MOTOR_D.Motor_Pwm=target_limit_float(MOTOR_D.Motor_Pwm,-amplitude,amplitude);
 }	    
 /**************************************************************************
@@ -526,8 +532,8 @@ int Incremental_PI_A (float Encoder,float Target)
 	
 	if( start_clear ) 
 	{
-		if(Pwm>0) Pwm--;
-		if(Pwm<0) Pwm++;
+		if(Pwm>0) Pwm-=50;
+		if(Pwm<0) Pwm+=50;
 
 		if( Pwm<2.0f&&Pwm>-2.0f ) Pwm=0,clear_state |= 1<<0;
 		else clear_state &= ~(1<<0);
@@ -539,15 +545,15 @@ int Incremental_PI_B (float Encoder,float Target)
 {
 	 static float Bias,Pwm,Last_bias;
 	 Bias=Target-Encoder; //Calculate the deviation //计算偏差
-	 Pwm+=Velocity_KP*(Bias-Last_bias)+Velocity_KI*Bias; 
+	 Pwm==Velocity_KP*(Bias-Last_bias)+Velocity_KI*Bias; 
 	 if(Pwm>16800)Pwm=16800;
 	 if(Pwm<-16800)Pwm=-16800;
 	 Last_bias=Bias; //Save the last deviation //保存上一次偏差 
 	
 	if( start_clear ) 
 	{
-		if(Pwm>0) Pwm--;
-		if(Pwm<0) Pwm++;
+		if(Pwm>0) Pwm-=50;
+		if(Pwm<0) Pwm+=50;
 		
 		if( Pwm<2.0f&&Pwm>-2.0f ) Pwm=0,clear_state |= 1<<1;
 		else clear_state &= ~(1<<1);
@@ -676,7 +682,7 @@ void PS2_control(void)
 	  //对PS2手柄控制命令进行处理
 		Move_X=LX;
 		Move_Z=RY;
-	  Move_X=Move_X*RC_Velocity/128;
+	    Move_X=Move_X*RC_Velocity/128;
 		Move_Z=Move_Z*(PI/4)/128;
 		
 	  //AKM car Z stands for front wheel steering Angle 
@@ -865,7 +871,7 @@ Output  : none
 **************************************************************************/
 void Smooth_control(float vx, float vz)
 {
-    float step=0.02; //平滑处理步进值
+    float step=2.00; //平滑处理步进值
 
     //X轴速度平滑
     if(vx>smooth_control.VX)
@@ -971,8 +977,8 @@ void auto_pwm_clear(void)
 			if( wait_clear_times >= 250 )
 			{
 				//小车在水平面上时才标记清空pwm，防止小车在斜坡上运动出现溜坡
-				if( diff > 8.8f )	start_clear = 1,clear_state = 0;//开启清除pwm
-				else clear_done_once = 1;//小车在斜坡上，标记已完成清除
+				/**if( diff > 8.8f )**/	start_clear = 1,clear_state = 0;//开启清除pwm
+				/**else clear_done_once = 1;//小车在斜坡上，标记已完成清除**/
 				
 				start_check_flag = 0;
 			}
