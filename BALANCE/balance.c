@@ -346,7 +346,7 @@ void Balance_task(void *pvParameters)
 					 else if (Car_Mode==4)	Set_Pwm(-MOTOR_A.Motor_Pwm,-MOTOR_B.Motor_Pwm, 0); //MD60
 					 else if (Car_Mode==5)	Set_Pwm(-MOTOR_A.Motor_Pwm,-MOTOR_B.Motor_Pwm, 0); //MD60
 					 else if (Car_Mode==6)	Set_Pwm(-MOTOR_A.Motor_Pwm,-MOTOR_B.Motor_Pwm, 0); //MD60
-					 
+					  
 					 #endif
 					
 				}
@@ -520,7 +520,7 @@ int Incremental_PI_A (float Encoder,float Target)
 	 static float Bias,Pwm,Last_bias;
 	 Bias=Target-Encoder; //Calculate the deviation //计算偏差
 	 Pwm+=Velocity_KP*(Bias-Last_bias)+Velocity_KI*Bias; 
-	 if(Pwm>16800)Pwm=16800;
+	if(Pwm>16800)Pwm=16800;`
 	 if(Pwm<-16800)Pwm=-16800;
 	 Last_bias=Bias; //Save the last deviation //保存上一次偏差 
 	
