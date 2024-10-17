@@ -63,7 +63,7 @@ void Drive_Motor(float Vx,float Vz)
 		//Wheel target speed limit //车轮目标速度限幅
 	  float amplitude=3.5;
 	 
-	  #if Akm_Car
+	    #if Akm_Car
 	
 		if(Car_Mode==0||Car_Mode==1||Car_Mode==7||Car_Mode==8) //SENIOR_AKM - 高配阿克曼   测试专用Car_Mode==8
 		{
@@ -532,8 +532,8 @@ int Incremental_PI_A (float Encoder,float Target)
 	
 	if( start_clear ) 
 	{
-		if(Pwm>0) Pwm-=50;
-		if(Pwm<0) Pwm+=50;
+		if(Pwm>0) Pwm--;
+		if(Pwm<0) Pwm++;
 
 		if( Pwm<2.0f&&Pwm>-2.0f ) Pwm=0,clear_state |= 1<<0;
 		else clear_state &= ~(1<<0);
@@ -545,15 +545,15 @@ int Incremental_PI_B (float Encoder,float Target)
 {
 	 static float Bias,Pwm,Last_bias;
 	 Bias=Target-Encoder; //Calculate the deviation //计算偏差
-	 Pwm==Velocity_KP*(Bias-Last_bias)+Velocity_KI*Bias; 
+	 Pwm+=Velocity_KP*(Bias-Last_bias)+Velocity_KI*Bias; 
 	 if(Pwm>16800)Pwm=16800;
 	 if(Pwm<-16800)Pwm=-16800;
 	 Last_bias=Bias; //Save the last deviation //保存上一次偏差 
 	
 	if( start_clear ) 
 	{
-		if(Pwm>0) Pwm-=50;
-		if(Pwm<0) Pwm+=50;
+		if(Pwm>0) Pwm--;
+		if(Pwm<0) Pwm++;
 		
 		if( Pwm<2.0f&&Pwm>-2.0f ) Pwm=0,clear_state |= 1<<1;
 		else clear_state &= ~(1<<1);

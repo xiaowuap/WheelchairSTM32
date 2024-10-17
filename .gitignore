@@ -1,1 +1,5 @@
 /.vscode
+*.crf
+*.o
+*.d
+*.axf
