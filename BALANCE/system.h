@@ -99,8 +99,8 @@ void systemInit(void);
 //开机(1000/100hz=10)秒后才允许控制小车进行运动
 #define CONTROL_DELAY		750
 //The number of robot types to determine the value of Divisor_Mode. There are currently 6 car types
-//机器人型号数量，决定Divisor_Mode的值，目前有7种小车类型
-#define CAR_NUMBER    10      
+//机器人型号数量，决定Divisor_Mode的值，目前有6种小车类型
+#define CAR_NUMBER    9      
 #define RATE_1_HZ		  1
 #define RATE_5_HZ		  5
 #define RATE_10_HZ		10

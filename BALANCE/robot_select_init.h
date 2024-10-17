@@ -4,67 +4,61 @@
 #include "system.h"
 
 //Parameter structure of robot
-//ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½á¹¹ï¿½ï¿½
+//»úÆ÷ÈË²ÎÊý½á¹¹Ìå
 typedef struct  
 {
-  float WheelSpacing;      //Wheelspacing, Mec_Car is half wheelspacing //ï¿½Ö¾ï¿½ ï¿½ï¿½ï¿½Ö³ï¿½Îªï¿½ï¿½ï¿½Ö¾ï¿½
-  float AxleSpacing;       //Axlespacing, Mec_Car is half axlespacing //ï¿½ï¿½ï¿?? ï¿½ï¿½ï¿½Ö³ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿??	
-  int   GearRatio;         //Motor_gear_ratio //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù±ï¿??
-  int   EncoderAccuracy;   //Number_of_encoder_lines //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
-  float WheelDiameter;     //Diameter of driving wheel //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½	
-  float OmniTurnRadiaus;   //Rotation radius of omnidirectional trolley //È«ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½×ªï¿½ë¾¶
+  float WheelSpacing;      //Wheelspacing, Mec_Car is half wheelspacing //ÂÖ¾à ÂóÂÖ³µÎª°ëÂÖ¾à
+  float AxleSpacing;       //Axlespacing, Mec_Car is half axlespacing //Öá¾à ÂóÂÖ³µÎª°ëÖá¾à	
+  int   GearRatio;         //Motor_gear_ratio //µç»ú¼õËÙ±È
+  int   EncoderAccuracy;   //Number_of_encoder_lines //±àÂëÆ÷¾«¶È(±àÂëÆ÷ÏßÊý)
+  float WheelDiameter;     //Diameter of driving wheel //Ö÷¶¯ÂÖÖ±¾¶	
+  float OmniTurnRadiaus;   //Rotation radius of omnidirectional trolley //È«ÏòÂÖÐ¡³µÐý×ª°ë¾¶
 }Robot_Parament_InitTypeDef;
 
 //The minimum turning radius of different Ackermann models is determined by the mechanical structure:
 //the maximum Angle of the wheelbase, wheelbase and front wheel
-//ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½Ð¡×ªï¿½ï¿½ë¾¶ï¿½ï¿½ï¿½É»ï¿½Ðµï¿½á¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿??ï¿½ï¿½à¡¢Ç°ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
+//²»Í¬°¢¿ËÂü³µÐÍµÄ×îÐ¡×ªÍä°ë¾¶£¬ÓÉ»úÐµ½á¹¹¾ö¶¨£ºÂÖ¾à¡¢Öá¾à¡¢Ç°ÂÖ×î´ó×ª½Ç
 #define   SENIOR_AKM_MIN_TURN_RADIUS       0.750f 
 #define   TOP_AKM_BS_MIN_TURN_RADIUS       1.400f 
 #define   TOP_AKM_DL_MIN_TURN_RADIUS       1.200f 
 
-//Axle_spacing //ï¿½ï¿½ï¿??
+//Axle_spacing //Öá¾à
 #define   SENIOR_AKM_axlespacing           0.322f 
 #define   TOP_AKM_BS_axlespacing           0.590f 
 #define   TOP_AKM_DL_axlespacing           0.530f 
 
-//Wheel_spacing //ï¿½Ö¾ï¿½
+//Wheel_spacing //ÂÖ¾à
 #define   SENIOR_AKM_wheelspacing          0.322f  
 #define   TOP_AKM_BS_wheelspacing          0.508f 
 #define   TOP_AKM_DL_wheelspacing          0.585f 
 #define   TOP_DIFF_wheelspacing            0.329f
 #define   FOUR_WHEEL_DIFF_BS_wheelspacing  0.573f
 #define   FOUR_WHEEL_DIFF_DL_wheelspacing  0.573f
-#define   Wheelchair_DIFF_wheelspacing     0.600f
 
 //Motor_gear_ratio
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù±ï¿??
+//µç»ú¼õËÙ±È
 #define   MD36N_5_18  5.18
 #define   MD36N_27    27
 #define   MD36N_51    51
 #define   MD36N_71    71
 #define   MD60N_18    18
 #define   MD60N_47    47
-#define   MDN27_3     27.3
-#define   MDN1        1
 
 //Number_of_encoder_lines
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//±àÂëÆ÷¾«¶È
 #define		Photoelectric_500 500
-#define   Photoelectric_600 600
 #define	  Hall_13 13
-#define	  Hall_8  8
 
 //Diameter of trolley tire
-//Ð¡ï¿½ï¿½ï¿½ï¿½Ì¥Ö±ï¿½ï¿½
+//Ð¡³µÂÖÌ¥Ö±¾¶
 #define   SENIOR_AKM_Tyre_Diameter      0.125
 #define   TOP_AKM_BS_WHEEL_Diameter     0.180
 #define   TOP_AKM_DL_Tyre_Diameter      0.254
 #define   TOP_DIFF_Tyre_Diameter        0.125
 #define   FOUR_WHEEL_DIFF_Tyre_Diameter 0.215
-#define   Wheelchair_Tyre_Diameter      0.300
 
 //Mecanum wheel tire diameter series
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¥Ö±ï¿½ï¿½
+//ÂóÂÖÂÖÌ¥Ö±¾¶
 #define		Mecanum_60  60
 #define		Mecanum_75  75
 #define		Mecanum_100 100
@@ -72,7 +66,7 @@ typedef struct
 #define		Mecanum_152 152
 	   
 //Omni wheel tire diameter series
-//ï¿½Ö¾ï¿½È«ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½Ïµï¿½ï¿½
+//ÂÖ¾¶È«ÏòÂÖÖ±¾¶ÏµÁÐ
 #define	  FullDirecion_75  75
 #define	  FullDirecion_127 127
 #define	  FullDirecion_152 152
@@ -81,10 +75,10 @@ typedef struct
 
 
 //The encoder octave depends on the encoder initialization Settings
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ú±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//±àÂëÆ÷±¶ÆµÊý£¬È¡¾öÓÚ±àÂëÆ÷³õÊ¼»¯ÉèÖÃ
 #define   EncoderMultiples 4
 //Encoder data reading frequency
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¶ï¿½È¡Æµï¿½ï¿½
+//±àÂëÆ÷Êý¾Ý¶ÁÈ¡ÆµÂÊ
 #define CONTROL_FREQUENCY 100
 
 void Robot_Select(void);

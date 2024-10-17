@@ -302,7 +302,7 @@ void Balance_task(void *pvParameters)
 				if(CONTROL_DELAY<Time_count && Time_count<CONTROL_DELAY+200) //Advance 1 seconds to test //前进1秒进行测试
 				{
 					Drive_Motor(0.2, 0);
-					//robot_mode_check(); //Detection function //检测函数
+					robot_mode_check(); //Detection function //检测函数
 				}
 				else if(CONTROL_DELAY+200<Time_count && Time_count<CONTROL_DELAY+230)
 				{
@@ -320,12 +320,6 @@ void Balance_task(void *pvParameters)
 					 //速度闭环控制计算各电机PWM值，PWM代表车轮实际转速					 
 					 MOTOR_A.Motor_Pwm=Incremental_PI_A(MOTOR_A.Encoder, MOTOR_A.Target);
 					 MOTOR_B.Motor_Pwm=Incremental_PI_B(MOTOR_B.Encoder, MOTOR_B.Target);
-					 //if( MOTOR_A.Target>0) MOTOR_A.Motor_Pwm=16800;
-	 				 //if( MOTOR_A.Target<0) MOTOR_A.Motor_Pwm=-16800;
-					 //if( MOTOR_A.Target==0) MOTOR_A.Motor_Pwm=0;
-					 //if( MOTOR_B.Target>0) MOTOR_B.Motor_Pwm=16800;
-	 				 //if( MOTOR_B.Target<0) MOTOR_B.Motor_Pwm=-16800;
-					 //if( MOTOR_B.Target==0) MOTOR_B.Motor_Pwm=0;
 					 
 					//检测是否需要清除PWM并自动执行清理
 					auto_pwm_clear();
@@ -351,8 +345,7 @@ void Balance_task(void *pvParameters)
 					 else if (Car_Mode==3)	Set_Pwm(-MOTOR_A.Motor_Pwm,-MOTOR_B.Motor_Pwm, 0); //MD60
 					 else if (Car_Mode==4)	Set_Pwm(-MOTOR_A.Motor_Pwm,-MOTOR_B.Motor_Pwm, 0); //MD60
 					 else if (Car_Mode==5)	Set_Pwm(-MOTOR_A.Motor_Pwm,-MOTOR_B.Motor_Pwm, 0); //MD60
-					 else if (Car_Mode==6)	Set_Pwm(-MOTOR_A.Motor_Pwm,-MOTOR_B.Motor_Pwm, 0); //MD60
-					  
+					 
 					 #endif
 					
 				}
@@ -404,7 +397,7 @@ void Limit_Pwm(int amplitude)
 {	
 	    MOTOR_A.Motor_Pwm=target_limit_float(MOTOR_A.Motor_Pwm,-amplitude,amplitude);
 	    MOTOR_B.Motor_Pwm=target_limit_float(MOTOR_B.Motor_Pwm,-amplitude,amplitude);
-		MOTOR_C.Motor_Pwm=target_limit_float(MOTOR_C.Motor_Pwm,-amplitude,amplitude);
+		  MOTOR_C.Motor_Pwm=target_limit_float(MOTOR_C.Motor_Pwm,-amplitude,amplitude);
 	    MOTOR_D.Motor_Pwm=target_limit_float(MOTOR_D.Motor_Pwm,-amplitude,amplitude);
 }	    
 /**************************************************************************
@@ -445,7 +438,7 @@ u8 Turn_Off( int voltage)
 {
 		u8 temp;
 	  //static int stop_count, enable_count;
-		if(voltage<10||EN==0||Flag_Stop==1)
+		if(voltage<20||EN==0||Flag_Stop==1)
 		{	                                                
 			temp=1;      
 			PWMA=0;
@@ -532,8 +525,8 @@ int Incremental_PI_A (float Encoder,float Target)
 	
 	if( start_clear ) 
 	{
-		if(Pwm>0) Pwm-=50;
-		if(Pwm<0) Pwm+=50;
+		if(Pwm>0) Pwm--;
+		if(Pwm<0) Pwm++;
 
 		if( Pwm<2.0f&&Pwm>-2.0f ) Pwm=0,clear_state |= 1<<0;
 		else clear_state &= ~(1<<0);
@@ -545,15 +538,15 @@ int Incremental_PI_B (float Encoder,float Target)
 {
 	 static float Bias,Pwm,Last_bias;
 	 Bias=Target-Encoder; //Calculate the deviation //计算偏差
-	 Pwm==Velocity_KP*(Bias-Last_bias)+Velocity_KI*Bias; 
+	 Pwm+=Velocity_KP*(Bias-Last_bias)+Velocity_KI*Bias; 
 	 if(Pwm>16800)Pwm=16800;
 	 if(Pwm<-16800)Pwm=-16800;
 	 Last_bias=Bias; //Save the last deviation //保存上一次偏差 
 	
 	if( start_clear ) 
 	{
-		if(Pwm>0) Pwm-=50;
-		if(Pwm<0) Pwm+=50;
+		if(Pwm>0) Pwm--;
+		if(Pwm<0) Pwm++;
 		
 		if( Pwm<2.0f&&Pwm>-2.0f ) Pwm=0,clear_state |= 1<<1;
 		else clear_state &= ~(1<<1);
@@ -682,7 +675,7 @@ void PS2_control(void)
 	  //对PS2手柄控制命令进行处理
 		Move_X=LX;
 		Move_Z=RY;
-	    Move_X=Move_X*RC_Velocity/128;
+	  Move_X=Move_X*RC_Velocity/128;
 		Move_Z=Move_Z*(PI/4)/128;
 		
 	  //AKM car Z stands for front wheel steering Angle 
@@ -856,10 +849,6 @@ void Get_Velocity_Form_Encoder(void)
 	//编码器原始数据转换为车轮速度，单位m/s
 	MOTOR_A.Encoder= Encoder_A_pr*CONTROL_FREQUENCY/Encoder_precision*Wheel_perimeter;
 	MOTOR_B.Encoder= Encoder_B_pr*CONTROL_FREQUENCY/Encoder_precision*Wheel_perimeter;
-/*	if(Car_Mode==6){
-	  MOTOR_A.Encoder= MOTOR_A.Target/2;
-	  MOTOR_B.Encoder= MOTOR_B.Target/2;
-	}*/
 }
 /**************************************************************************
 Function: Smoothing the target velocity
@@ -871,7 +860,7 @@ Output  : none
 **************************************************************************/
 void Smooth_control(float vx, float vz)
 {
-    float step=2.00; //平滑处理步进值
+    float step=0.02; //平滑处理步进值
 
     //X轴速度平滑
     if(vx>smooth_control.VX)
