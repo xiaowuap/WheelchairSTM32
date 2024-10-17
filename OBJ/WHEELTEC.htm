@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\WHEELTEC.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\WHEELTEC.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Fri Oct 11 13:45:56 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Oct 17 13:37:06 2024
 <BR><P>
 <H3>Maximum Stack Usage =        336 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -677,7 +677,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;systemInit
 </UL>
 
-<P><STRONG><a name="[63]"></a>Balance_task</STRONG> (Thumb, 510 bytes, Stack size 16 bytes, balance.o(i.Balance_task))
+<P><STRONG><a name="[63]"></a>Balance_task</STRONG> (Thumb, 508 bytes, Stack size 16 bytes, balance.o(i.Balance_task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = Balance_task &rArr; vTaskDelayUntil &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelayUntil
@@ -1152,7 +1152,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Balance_task
 </UL>
 
-<P><STRONG><a name="[95]"></a>Incremental_PI_B</STRONG> (Thumb, 160 bytes, Stack size 0 bytes, balance.o(i.Incremental_PI_B))
+<P><STRONG><a name="[95]"></a>Incremental_PI_B</STRONG> (Thumb, 204 bytes, Stack size 0 bytes, balance.o(i.Incremental_PI_B))
 <BR><BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Balance_task
 </UL>
 
@@ -1577,7 +1577,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Select
 </UL>
 
-<P><STRONG><a name="[fb]"></a>Robot_Select</STRONG> (Thumb, 244 bytes, Stack size 8 bytes, robot_select_init.o(i.Robot_Select))
+<P><STRONG><a name="[fb]"></a>Robot_Select</STRONG> (Thumb, 262 bytes, Stack size 8 bytes, robot_select_init.o(i.Robot_Select))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = Robot_Select &rArr; Get_adc_Average &rArr; delay_ms &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_adc_Average

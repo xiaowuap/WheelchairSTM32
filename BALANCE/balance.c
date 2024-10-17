@@ -351,7 +351,7 @@ void Balance_task(void *pvParameters)
 					 else if (Car_Mode==3)	Set_Pwm(-MOTOR_A.Motor_Pwm,-MOTOR_B.Motor_Pwm, 0); //MD60
 					 else if (Car_Mode==4)	Set_Pwm(-MOTOR_A.Motor_Pwm,-MOTOR_B.Motor_Pwm, 0); //MD60
 					 else if (Car_Mode==5)	Set_Pwm(-MOTOR_A.Motor_Pwm,-MOTOR_B.Motor_Pwm, 0); //MD60
-					 else if (Car_Mode==6)	Set_Pwm(-MOTOR_A.Motor_Pwm,-MOTOR_B.Motor_Pwm, 0); //MD60
+					 else if (Car_Mode==6)	Set_Pwm(MOTOR_A.Motor_Pwm,MOTOR_B.Motor_Pwm, 0); //MD60
 					  
 					 #endif
 					
@@ -871,7 +871,7 @@ Output  : none
 **************************************************************************/
 void Smooth_control(float vx, float vz)
 {
-    float step=2.00; //平滑处理步进值
+    float step=4.00; //平滑处理步进值
 
     //X轴速度平滑
     if(vx>smooth_control.VX)
