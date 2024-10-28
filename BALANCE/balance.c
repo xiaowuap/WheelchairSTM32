@@ -61,7 +61,7 @@ Output  : none
 void Drive_Motor(float Vx,float Vz)
 {   
 		//Wheel target speed limit //车轮目标速度限幅
-	  float amplitude=3.5;
+	  float amplitude=4.5;
 	 
 	    #if Akm_Car
 	
@@ -302,7 +302,7 @@ void Balance_task(void *pvParameters)
 				if(CONTROL_DELAY<Time_count && Time_count<CONTROL_DELAY+200) //Advance 1 seconds to test //前进1秒进行测试
 				{
 					Drive_Motor(0.2, 0);
-					//robot_mode_check(); //Detection function //检测函数
+					robot_mode_check(); //Detection function //检测函数
 				}
 				else if(CONTROL_DELAY+200<Time_count && Time_count<CONTROL_DELAY+230)
 				{
@@ -532,6 +532,8 @@ int Incremental_PI_A (float Encoder,float Target)
 	
 	if( start_clear ) 
 	{
+		if(Pwm>50) Pwm-=50;
+		if(Pwm<-50) Pwm+=50;
 		if(Pwm>0) Pwm--;
 		if(Pwm<0) Pwm++;
 
@@ -552,6 +554,8 @@ int Incremental_PI_B (float Encoder,float Target)
 	
 	if( start_clear ) 
 	{
+		if(Pwm>50) Pwm-=50;
+		if(Pwm<-50) Pwm+=50;
 		if(Pwm>0) Pwm--;
 		if(Pwm<0) Pwm++;
 		
@@ -842,8 +846,8 @@ void Get_Velocity_Form_Encoder(void)
 	//Retrieves the original data of the encoder
 	//获取编码器的原始数据
 	float Encoder_A_pr,Encoder_B_pr; 
-	Encoder_A_pr= Read_Encoder(2);  
-	Encoder_B_pr=-Read_Encoder(3);
+	Encoder_A_pr=-Read_Encoder(2);  
+	Encoder_B_pr= Read_Encoder(3);
 
     //未完成自检时收集编码器数据
     if( check_end==0 )
