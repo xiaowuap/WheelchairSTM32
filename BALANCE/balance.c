@@ -351,7 +351,7 @@ void Balance_task(void *pvParameters)
 					 else if (Car_Mode==3)	Set_Pwm(-MOTOR_A.Motor_Pwm,-MOTOR_B.Motor_Pwm, 0); //MD60
 					 else if (Car_Mode==4)	Set_Pwm(-MOTOR_A.Motor_Pwm,-MOTOR_B.Motor_Pwm, 0); //MD60
 					 else if (Car_Mode==5)	Set_Pwm(-MOTOR_A.Motor_Pwm,-MOTOR_B.Motor_Pwm, 0); //MD60
-					 else if (Car_Mode==6)	Set_Pwm(MOTOR_A.Motor_Pwm,MOTOR_B.Motor_Pwm, 0); //MD60
+					 else if (Car_Mode==6)	Set_Pwm(-MOTOR_A.Motor_Pwm,MOTOR_B.Motor_Pwm, 0); //MD60
 					  
 					 #endif
 					
@@ -852,7 +852,7 @@ void Get_Velocity_Form_Encoder(void)
     //未完成自检时收集编码器数据
     if( check_end==0 )
     {
-        check_a+=Encoder_A_pr;
+        check_a+=-Encoder_A_pr;
         check_b+=Encoder_B_pr;
     }
 	
