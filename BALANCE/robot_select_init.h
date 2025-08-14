@@ -1,3 +1,4 @@
+
 #ifndef __ROBOTSELECTINIT_H
 #define __ROBOTSELECTINIT_H
 #include "sys.h"
@@ -34,7 +35,7 @@ typedef struct
 #define   TOP_DIFF_wheelspacing            0.329f
 #define   FOUR_WHEEL_DIFF_BS_wheelspacing  0.573f
 #define   FOUR_WHEEL_DIFF_DL_wheelspacing  0.573f
-#define   Wheelchair_DIFF_wheelspacing     0.600f
+#define   Wheelchair_DIFF_wheelspacing     0.625f
 
 //Motor_gear_ratio
 //������ٱ�??
@@ -61,7 +62,7 @@ typedef struct
 #define   TOP_AKM_DL_Tyre_Diameter      0.254
 #define   TOP_DIFF_Tyre_Diameter        0.125
 #define   FOUR_WHEEL_DIFF_Tyre_Diameter 0.215
-#define   Wheelchair_Tyre_Diameter      0.300
+#define   Wheelchair_Tyre_Diameter      0.325
 
 //Mecanum wheel tire diameter series
 //������ֱ̥��
@@ -83,6 +84,7 @@ typedef struct
 //The encoder octave depends on the encoder initialization Settings
 //��������Ƶ����ȡ���ڱ�������ʼ������
 #define   EncoderMultiples 4
+
 //Encoder data reading frequency
 //���������ݶ�ȡƵ��
 #define CONTROL_FREQUENCY 100
