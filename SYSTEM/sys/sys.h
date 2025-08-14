@@ -2,6 +2,66 @@
 #define __SYS_H	 
 #include "stm32f4xx.h" 
 
+//TODO:用于debug调试变量
+typedef struct{
+	float   f_val1;
+	float   f_val2;
+	int     int_val;
+	short   s_val;
+	uint8_t  u8_val;
+	uint16_t u16_val;
+	
+	//TODO:阿克曼调试新增
+//	float akm_left_angle;
+//	float akm_right_angle;
+//	float akm_turnR;
+//	
+//	float odom_x;
+//	float odom_y;
+//	float odom_z;
+//	
+//	uint16_t set_turnangle;
+	//1.一定要注意除法相关语句,分母变量一定要初始化,不能为0
+}DEBUG_t;
+
+
+//硬件版本,以V1.0开始
+typedef enum{
+	HW_NONE = 0,
+	V1_0 = 0x0001,  //Ver1.0：C50C,陀螺仪MPU6050,PS2手柄为普通插座版本
+	V1_1 = 0x0002,  //Ver1.1：C50C,陀螺仪ICM20948,PS2手柄升级为USB手柄
+}HARDWARE_VERSION;
+
+//软件版本,以V1.00开始.
+typedef enum{
+	SW_NONE = 0,
+	V1_00 = 0x0001, //Ver1.00：软件版本更新请查看 Updatalog/更新记录.txt
+}SOFTWARE_VERSION;
+
+//机器人系统级相关变量
+typedef struct{
+	HARDWARE_VERSION HardWare_Ver;  //硬件版本
+	SOFTWARE_VERSION SoftWare_Ver;  //软件版本
+	int Time_count;      // 系统上电计时
+	u8 HardWare_charger; // 系统是否存在充电装备硬件 1:存在 0:不存在
+	u8 SecurityLevel;    // 系统安全等级 默认为1    0:最高等级,对机器人控制命令持续监测,若丢失则自动停止. 1:不对控制命令监测,命令丢失保留最后一个速度指令运动.  2~255：...待定
+	u16 LED_delay;       // 系统状态指示灯闪烁时间 单位 ms
+}SYS_VAL_t;
+
+extern SYS_VAL_t SysVal;
+void SYS_VAL_t_Init(SYS_VAL_t* p);
+const uint8_t* getSW_Ver(SOFTWARE_VERSION ver);
+const uint8_t* getHW_Ver(HARDWARE_VERSION ver);
+
+//extern DEBUG_t debug;
+
+//math abs接口
+//abs() :  用于 int类型
+//fabs():  用于 float类型
+//labs()： 用于 long int 类型的数据。
+//llabs()：用于 long long int 类型的数据。
+//fabsf()：用于 float 类型的数据。
+//fabsl()：用于 long double 类型的数据。
 
 //0,不支持os
 //1,支持os

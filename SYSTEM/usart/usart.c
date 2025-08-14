@@ -28,7 +28,33 @@ int fputc(int ch, FILE *f)
 	while((UART4->SR&0X40)==0);//循环发送,直到发送完毕   
 	UART4->DR = (u8) ch;      
 	return ch;
+
+//	while((USART1->SR&0X40)==0);//循环发送,直到发送完毕   
+//	USART1->DR = (u8) ch;      
+//	return ch;
+
 }
+
+//任意串口printf
+#include "stdarg.h"
+uint8_t Ux_TxBuff[256];     //串口x发送缓冲区
+void any_printf(USART_TypeDef* USARTx,char *format,...)
+{	
+	uint8_t i;                                           //用于for循环
+	
+	va_list listdata;                                     //建立一个va_list变量listdata
+	va_start(listdata,format);                            //向listdata加载...代表的不定长的参数
+	vsprintf((char *)Ux_TxBuff,format,listdata);          //格式化输出到缓冲区U0_TxBuff
+	va_end(listdata);                                     //释放listdata
+
+	for(i=0;i<strlen((const char*)Ux_TxBuff);i++){        //根据U0_TxBuff缓冲区数据量，一个字节一个字节的循环发送
+		while((USARTx->SR&0x40)==0);
+		USARTx->DR = Ux_TxBuff[i];
+			
+	}
+	while((USARTx->SR&0x40)==0);	     //等到最后一个字节数据发送完毕，再退出函数
+}
+
 #endif
  
 #if EN_USART1_RX   //如果使能了接收

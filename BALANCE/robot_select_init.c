@@ -1,53 +1,65 @@
 #include "robot_select_init.h"
 
-//Initialize the robot parameter structure
-//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½á¹¹ï¿½ï¿½
-Robot_Parament_InitTypeDef  Robot_Parament; 
+static void Robot_Init(uint8_t type,float wheelspacing,float axlespacing,float gearratio,int Accuracy,\
+	                    float tyre_diameter,float akm_min_turn,float omin_turnR,int vkp,int vki);
+
+//¶¨ÒåÒ»¸ö»úÆ÷ÈË£¬ÄÚ²¿°üº¬»úÆ÷ÈËµÄ¸÷ÖÖ²ÎÊý
+static ROBOT robot;
+
 /**************************************************************************
 Function: According to the potentiometer switch needs to control the car type
 Input   : none
 Output  : none
-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½Ýµï¿½Î»ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Æµï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
+º¯Êý¹¦ÄÜ£º¸ù¾ÝµçÎ»Æ÷ÇÐ»»ÐèÒª¿ØÖÆµÄÐ¡³µÀàÐÍ
+Èë¿Ú²ÎÊý£ºÎÞ
+·µ»Ø  Öµ£ºÎÞ
 **************************************************************************/
 void Robot_Select(void)
 {
-	//The ADC value is variable in segments, depending on the number of car models. Currently there are 6 car models, CAR_NUMBER=6
-  //ADCÖµï¿½Ö¶Î±ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Íºï¿½ï¿½ï¿½ï¿½ï¿½
-	Divisor_Mode=4096/CAR_NUMBER+5;
-	Car_Mode=(int) ((Get_adc_Average(CAR_MODE_ADC,10))/Divisor_Mode); //Collect the pin information of potentiometer //ï¿½É¼ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢	
-  if(Car_Mode>10)Car_Mode=10;
-	#if Akm_Car
+	uint16_t TypeNum = 4096/CAR_NUMBER;//¸ù¾Ý³µÐÍÊýÁ¿,»ñÈ¡ADC²É¼¯µÄ·ÖÆµÏµÊý
+	
+	TypeNum = Get_ADC1_Average(CarMode_Ch,10)/TypeNum;//¸ù¾Ý°å×ÓµçÎ»Æ÷Ñ¡ÔñÈ·¶¨²»Í¬µÄ³µÐÍ
+	
+	#if defined AKM_CAR
+	
+	switch( TypeNum )
 	{
-		if (Car_Mode==0)  Robot_Init(SENIOR_AKM_wheelspacing, SENIOR_AKM_axlespacing, MD36N_27, Photoelectric_500, SENIOR_AKM_Tyre_Diameter); //SENIOR_AKM_27 - ï¿½ï¿½ï¿½ä°¢ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
-		if (Car_Mode==1)  Robot_Init(SENIOR_AKM_wheelspacing, SENIOR_AKM_axlespacing, MD36N_51, Photoelectric_500, SENIOR_AKM_Tyre_Diameter); //SENIOR_AKM_51 - ï¿½ï¿½ï¿½ä°¢ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//¸ßÅä³£¹æ¡¢ÖØÔØ
+		case 0: Robot_Init(TypeNum,SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_27,GMR_500,SENIOR_AKM_WheelDiameter,SENIOR_AKM_MIN_TURN_RADIUS,0,VEL_KP,VEL_KI);break;
+		case 1: Robot_Init(TypeNum,SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_51,GMR_500,SENIOR_AKM_WheelDiameter,SENIOR_AKM_MIN_TURN_RADIUS,0,VEL_KP,VEL_KI);break;
 		
-		if (Car_Mode==2)  Robot_Init(TOP_AKM_BS_wheelspacing, TOP_AKM_BS_axlespacing, MD60N_18, Photoelectric_500, TOP_AKM_BS_WHEEL_Diameter); //TOP_AKM_BS_18 - ï¿½ï¿½ï¿½ä°¢ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½  //BS: Pendulum suspension
-		if (Car_Mode==3)  Robot_Init(TOP_AKM_BS_wheelspacing, TOP_AKM_BS_axlespacing, MD60N_47, Photoelectric_500, TOP_AKM_BS_WHEEL_Diameter); //TOP_AKM_BS_18 - ï¿½ï¿½ï¿½ä°¢ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+		//¶¥Åä°ÚÊ½³£¹æ¡¢ÖØÔØ
+		case 2: Robot_Init(TOP_AKM_BS_wheelspacing,TOP_AKM_BS_axlespacing,MD60N_18,GMR_500,TOP_AKM_BS_WheelDiameter,VEL_KP,VEL_KI);break;
+		case 3: Robot_Init(TOP_AKM_BS_wheelspacing,TOP_AKM_BS_axlespacing,MD60N_47,GMR_500,TOP_AKM_BS_WheelDiameter,VEL_KP,VEL_KI);break;
 		
-		if (Car_Mode==4)  Robot_Init(TOP_AKM_DL_wheelspacing, TOP_AKM_DL_axlespacing, MD60N_18, Photoelectric_500, TOP_AKM_DL_Tyre_Diameter),  //TOP_AKM_DL_18 - ï¿½ï¿½ï¿½ä°¢ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) //DL: Independent suspension
-			                Velocity_KP=400,Velocity_KI=100; //PID parameter optimization //PIDï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½
-		if (Car_Mode==5)  Robot_Init(TOP_AKM_DL_wheelspacing, TOP_AKM_DL_axlespacing, MD60N_47, Photoelectric_500, TOP_AKM_DL_Tyre_Diameter),  //TOP_AKM_DL_47 - ï¿½ï¿½ï¿½ä°¢ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) 
-		                  Velocity_KP=50,Velocity_KI=200; //PID parameter optimization //PIDï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½
-		//if (Car_Mode==6)  Robot_Init(LONG_AKM_wheelspacing, LONG_AKM_axlespacing,   MD36N_51, Photoelectric_500, SENIOR_AKM_Tyre_Diameter);  //Customized special - ï¿½ï¿½ï¿½ï¿½×¨ï¿½ï¿½
-		if (Car_Mode==7)  Robot_Init(TOP_AKM_DL_wheelspacing, TOP_AKM_DL_axlespacing,   MD60N_18, Photoelectric_500, TOP_AKM_DL_Tyre_Diameter);  //Customized special - ï¿½ï¿½ï¿½ï¿½×¨ï¿½ï¿½
-		if (Car_Mode==8)  Robot_Init(TOP_AKM_DL_wheelspacing, TOP_AKM_DL_axlespacing,   MD60N_18, Photoelectric_500, TOP_AKM_DL_Tyre_Diameter);  //Customized special - ï¿½ï¿½ï¿½ï¿½×¨ï¿½ï¿½
-  }
-	#elif Diff_Car
-	{
-		if (Car_Mode==0)  Robot_Init(TOP_DIFF_wheelspacing,           0, MD36N_27, Photoelectric_500, TOP_DIFF_Tyre_Diameter);//TOP_DIFF_27 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù³ï¿½ï¿½ï¿½ï¿½ï¿½  
-		if (Car_Mode==1)  Robot_Init(TOP_DIFF_wheelspacing,           0, MD36N_51, Photoelectric_500, TOP_DIFF_Tyre_Diameter);//TOP_DIFF_51 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//¶¥Åä¶ÀÁ¢³£¹æ¡¢ÖØÔØ
+		case 4: Robot_Init(TOP_AKM_DL_wheelspacing,TOP_AKM_DL_axlespacing,MD60N_18,GMR_500,TOP_AKM_DL_WheelDiameter,400,100);break;
+		case 5: Robot_Init(TOP_AKM_DL_wheelspacing,TOP_AKM_DL_axlespacing,MD60N_47,GMR_500,TOP_AKM_DL_WheelDiameter,50,200);break;
 		
-		if (Car_Mode==2)  Robot_Init(FOUR_WHEEL_DIFF_BS_wheelspacing, 0, MD60N_18, Photoelectric_500, FOUR_WHEEL_DIFF_Tyre_Diameter);//FOUR_WHEEL_DIFF_BS_18 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ //BS: Pendulum suspension
-		if (Car_Mode==3)  Robot_Init(FOUR_WHEEL_DIFF_BS_wheelspacing, 0, MD60N_47, Photoelectric_500, FOUR_WHEEL_DIFF_Tyre_Diameter);//FOUR_WHEEL_DIFF_BS_47 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//Ô¤Áô·Ç±ê¶¨ÖÆ³µ ³µÐÍ
+		case 6: Robot_Init(SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_27,GMR_500,SENIOR_AKM_WheelDiameter,VEL_KP,VEL_KI);break;
 		
-		if (Car_Mode==4)  Robot_Init(FOUR_WHEEL_DIFF_DL_wheelspacing, 0, MD60N_18, Photoelectric_500, FOUR_WHEEL_DIFF_Tyre_Diameter);//FOUR_WHEEL_DIFF_BS_18 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ //DL: Independent suspension
-		if (Car_Mode==5)  Robot_Init(FOUR_WHEEL_DIFF_DL_wheelspacing, 0, MD60N_47, Photoelectric_500, FOUR_WHEEL_DIFF_Tyre_Diameter);//FOUR_WHEEL_DIFF_BS_47 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-		if (Car_Mode==6)  Robot_Init(Wheelchair_DIFF_wheelspacing,    0, MDN1,     Photoelectric_600,      Wheelchair_Tyre_Diameter),
-		Velocity_KP=250,Velocity_KI=500;
-  }
+		//7¡¢8°²×°²âÊÔÊ¹ÓÃ³µÐÍ
+		case 7: Robot_Init(SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_27,GMR_500,SENIOR_AKM_WheelDiameter,VEL_KP,VEL_KI);break;
+		case 8: Robot_Init(SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_27,GMR_500,SENIOR_AKM_WheelDiameter,VEL_KP,VEL_KI);break;
+		
+		//¸ßËÙ°¢¿ËÂü(¸ßÅä³µÐÍ,5.18¼õËÙ±Èµç»ú)
+		case 9: Robot_Init(SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_5_18,GMR_500,SENIOR_AKM_WheelDiameter,200,50);break;
+		
+		default:break;
+	}
+	
+	
+	#elif defined DIFF_CAR
+	
+	#elif defined MEC_CAR
+	
+	#elif defined _4WD_CAR
+	
+	#elif defined OMNI_CAR
+	
 	#endif
+    
 }
 
 
@@ -55,25 +67,75 @@ void Robot_Select(void)
 Function: Initialize cart parameters
 Input   : wheelspacing, axlespacing, omni_rotation_radiaus, motor_gear_ratio, Number_of_encoder_lines, tyre_diameter
 Output  : none
-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½×ªï¿½ë¾¶ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ì¥Ö±ï¿½ï¿½
-ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
+º¯Êý¹¦ÄÜ£º³õÊ¼»¯Ð¡³µ²ÎÊý
+Èë¿Ú²ÎÊý£ºÂÖ¾à Öá¾à ×Ô×ª°ë¾¶ µç»ú¼õËÙ±È µç»ú±àÂëÆ÷¾«¶È ÂÖÌ¥Ö±¾¶
+·µ»Ø  Öµ£ºÎÞ
 **************************************************************************/
-void Robot_Init(float wheelspacing,float axlespacing,int gearratio,int Accuracy,float tyre_diameter) 
+
+void robot_param_setKP(int setKP)
 {
-  Robot_Parament.WheelSpacing=wheelspacing;   //Wheelspacing ï¿½Ö¾ï¿½  
-  Robot_Parament.AxleSpacing=axlespacing;     //Axlespacing ï¿½ï¿½ï¿½
-  Robot_Parament.GearRatio=gearratio;         //motor_gear_ratio //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù±ï¿½
-  Robot_Parament.EncoderAccuracy=Accuracy;    //Number_of_encoder_lines //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
-  Robot_Parament.WheelDiameter=tyre_diameter; //Diameter of driving wheel //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½
+	robot.V_KP = setKP;
+}
+
+void robot_param_setKI(int setKI)
+{
+	robot.V_KI = setKI;
+}
+
+
+//Èë¿Ú²ÎÊý£º³µÐÍ¡¢ÂÖ¾à¡¢Öá¾à¡¢µç»ú¼õËÙ±È¡¢µç»ú±àÂëÆ÷¾«¶È¡¢ÂÖ×ÓÖ±¾¶¡¢°¢¿ËÂü×îÐ¡×ªÍä°ë¾¶¡¢È«ÏòÂÖ×Ô×ª°ë¾¶¡¢Ä¬ÈÏkp¡¢Ä¬ÈÏki
+static void Robot_Init(uint8_t type,float wheelspacing,float axlespacing,float gearratio,int Accuracy,\
+	                    float tyre_diameter,float akm_min_turn,float omin_turnR,int vkp,int vki)
+{
+	robot.HardwareParam.type = type;                   //³µÐÍ
+    robot.HardwareParam.WheelSpacing = wheelspacing;   //ÂÖ¾à
+	robot.HardwareParam.AxleSpacing = axlespacing;     //Öá¾à
+	robot.HardwareParam.GearRatio = gearratio;         //µç»ú¼õËÙ±È
+	robot.HardwareParam.EncoderAccuracy = Accuracy;    //µç»ú±àÂëÆ÷¾«¶È
+	robot.HardwareParam.Wheel_Circ = tyre_diameter*PI; //ÂÖ×ÓÖÜ³¤(PI*D)
+	robot.HardwareParam.MIN_turn_radius = akm_min_turn;//×îÐ¡×ªÍä°ë¾¶
 	
-	//Encoder value corresponding to 1 turn of motor (wheel)
-	//ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)×ª1È¦ï¿½ï¿½Ó¦ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
-	Encoder_precision=EncoderMultiples*Robot_Parament.EncoderAccuracy*Robot_Parament.GearRatio;
-	//Driving wheel circumference //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü³ï¿½	
-	Wheel_perimeter=Robot_Parament.WheelDiameter*PI; 
-	//Wheelspacing ï¿½Ö¾ï¿½ 
-    Wheel_spacing=Robot_Parament.WheelSpacing;  
-    //Wheel_axlespacing (Wheel_axlespacing is not required for motion analysis of differential trolleys) //ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½Ë¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½)	
-	Axle_spacing=Robot_Parament.AxleSpacing;   
+	
+	robot_param_setKP(vkp);
+	robot_param_setKI(vki);
+}
+
+//ÂÖ¾à
+float get_wheelspacing(void)
+{
+	return robot.HardwareParam.WheelSpacing;
+}
+
+//Öá¾à
+float get_AxleSpacing(void)
+{
+	return robot.HardwareParam.AxleSpacing;
+}
+
+//¼õËÙ±È
+float get_GearRatio(void)
+{
+	return robot.HardwareParam.GearRatio;
+}
+
+//±àÂëÆ÷¾«¶È
+uint16_t get_EncoderAccuracy(void)
+{
+	return robot.HardwareParam.EncoderAccuracy;
+}
+
+//ÂÖ×ÓÖÜ³¤
+float get_Wheel_Circ(void)
+{
+	return robot.HardwareParam.Wheel_Circ;
+}
+
+int get_robot_KP(void)
+{
+	return robot.V_KP;
+}
+
+int get_robot_KI(void)
+{
+	return robot.V_KI;
 }

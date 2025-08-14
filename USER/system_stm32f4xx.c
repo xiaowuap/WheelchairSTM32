@@ -260,7 +260,7 @@
   */
 
 #include "stm32f4xx.h"
-
+#include "system.h"
 /**
   * @}
   */
@@ -303,11 +303,11 @@
 #endif /* USE_HSE_BYPASS */    
 #endif /* STM32F411xE */
     
-/*!< Uncomment the following line if you need to relocate your vector Table in
-     Internal SRAM. */
-/* #define VECT_TAB_SRAM */
-#define VECT_TAB_OFFSET  0x00 /*!< Vector Table base offset field. 
-                                   This value must be a multiple of 0x200. */
+///*!< Uncomment the following line if you need to relocate your vector Table in
+//     Internal SRAM. */
+///* #define VECT_TAB_SRAM */
+//#define VECT_TAB_OFFSET  0x4000 /*!< Vector Table base offset field. 
+//                                   This value must be a multiple of 0x200. */
 /******************************************************************************/
 
 /************************* PLL Parameters *************************************/

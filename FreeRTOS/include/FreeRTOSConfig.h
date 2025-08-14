@@ -83,6 +83,39 @@
 #define vAssertCalled(char,int) printf("Error:%s,%d\r\n",char,int)
 #define configASSERT(x) if((x)==0) vAssertCalled(__FILE__,__LINE__)
 
+/// Priority values.优先级定义
+typedef enum {
+  osPriorityNone          =  0,         ///< No priority (not initialized).
+  osPriorityIdle          =  1,         ///< Reserved for Idle thread.
+  osPriorityLow           =  8,         ///< Priority: low
+  osPriorityLow1          =  8+1,       ///< Priority: low + 1
+  osPriorityLow2          =  8+2,       ///< Priority: low + 2
+  osPriorityLow3          =  8+3,       ///< Priority: low + 3
+  osPriorityLow4          =  8+4,       ///< Priority: low + 4
+  osPriorityLow5          =  8+5,       ///< Priority: low + 5
+  osPriorityLow6          =  8+6,       ///< Priority: low + 6
+  osPriorityLow7          =  8+7,       ///< Priority: low + 7
+  osPriorityBelowNormal   = 16,         ///< Priority: below normal
+  osPriorityBelowNormal1  = 16+1,       ///< Priority: below normal + 1
+  osPriorityBelowNormal2  = 16+2,       ///< Priority: below normal + 2
+  osPriorityBelowNormal3  = 16+3,       ///< Priority: below normal + 3
+  osPriorityBelowNormal4  = 16+4,       ///< Priority: below normal + 4
+  osPriorityBelowNormal5  = 16+5,       ///< Priority: below normal + 5
+  osPriorityBelowNormal6  = 16+6,       ///< Priority: below normal + 6
+  osPriorityBelowNormal7  = 16+7,       ///< Priority: below normal + 7
+  osPriorityNormal        = 24,         ///< Priority: normal
+  osPriorityNormal1       = 24+1,       ///< Priority: normal + 1
+  osPriorityNormal2       = 24+2,       ///< Priority: normal + 2
+  osPriorityNormal3       = 24+3,       ///< Priority: normal + 3
+  osPriorityNormal4       = 24+4,       ///< Priority: normal + 4
+  osPriorityNormal5       = 24+5,       ///< Priority: normal + 5
+  osPriorityNormal6       = 24+6,       ///< Priority: normal + 6
+  osPriorityNormal7       = 24+7,       ///< Priority: normal + 7
+  osPriorityAboveNormal   = 32,         ///< Priority: above normal
+  osPriorityError         = -1,         ///< System cannot determine priority or illegal priority.
+  osPriorityReserved      = 0x7FFFFFFF  ///< Prevents enum down-size compiler optimization.
+} osPriority_t;
+
 /***************************************************************************************************************/
 /*                                        FreeRTOS基础配置配置选项                                              */
 /***************************************************************************************************************/
@@ -118,7 +151,7 @@
 /*                                FreeRTOS与内存申请有关配置选项                                                */
 /***************************************************************************************************************/
 #define configSUPPORT_DYNAMIC_ALLOCATION        1                       //支持动态内存申请
-#define configTOTAL_HEAP_SIZE					((size_t)(20*1024))     //系统所有总的堆大小
+#define configTOTAL_HEAP_SIZE					((size_t)(30*1024))     //系统所有总的堆大小
 
 /***************************************************************************************************************/
 /*                                FreeRTOS与钩子函数有关的配置选项                                              */

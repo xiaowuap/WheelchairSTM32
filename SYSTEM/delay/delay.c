@@ -73,7 +73,8 @@ void delay_us(u32 nus)
 			told=tnow;
 			if(tcnt>=ticks)break;			//时间超过/等于要延迟的时间,则退出.
 		}  
-	};										    
+	};
+	
 }  
 //延时nms
 //nms:要延时的ms数
