@@ -39,7 +39,7 @@ int Servo;
 
 //Default speed of remote control car, unit: mm/s
 //遥控小车的默认速度，单位：mm/s
-float RC_Velocity=12000; 
+float RC_Velocity=500; 
 
 //Vehicle three-axis target moving speed, unit: m/s
 //小车三轴目标运动速度，单位：m/s

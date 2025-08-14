@@ -642,7 +642,7 @@ void Get_RC(void)
 	 #elif Diff_Car
 	 //The greater the forward speed, the greater the rotation speed
 	 //前进速度越大旋转速度越大
-	 Move_Z=Move_Z*RC_Velocity/500; 
+	 Move_Z=Move_Z*RC_Velocity/800; 
 	 #endif
 
 	 //Unit conversion, mm/s -> m/s
