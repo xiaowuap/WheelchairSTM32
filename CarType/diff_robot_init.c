@@ -36,7 +36,10 @@ void Robot_Select(void)
 		//顶配独立常规、重载
 		case 4: Robot_Init(FOUR_WHEEL_DIFF_DL_wheelspacing , MD60N_18 , GMR_500 , FOUR_WHEEL_DIFF_WheelDiameter , VEL_KP , VEL_KI); break;
 		case 5: Robot_Init(FOUR_WHEEL_DIFF_DL_wheelspacing , MD60N_47 , GMR_500 , FOUR_WHEEL_DIFF_WheelDiameter , VEL_KP , VEL_KI); break;
-		
+
+		//椅子差速
+		case 6: Robot_Init(CHAIR_DIFF_wheelspacing , MD60N_1 , GMR_600 , CHAIR_DIFF_WheelDiameter , VEL_KP , VEL_KI); break;
+
 		default:break;
 	}
 	

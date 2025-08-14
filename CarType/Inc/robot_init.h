@@ -77,10 +77,12 @@ void Robot_Select(void);
 #define   MD36N_71    71
 #define   MD60N_18    18
 #define   MD60N_47    47
+#define   MD60N_1     1
 
 //Number_of_encoder_lines
 //编码器精度
 #define		GMR_500  500
+#define     GMR_600  600
 #define	    Hall_13  13
 
 //The encoder octave depends on the encoder initialization Settings
@@ -120,18 +122,20 @@ void Robot_Select(void);
 	
 #elif defined DIFF_CAR
 	//差速小车的车型数量
-	#define   CAR_NUMBER    9   
+	#define   CAR_NUMBER    10   
 	
 	//轮距
 	#define   TOP_DIFF_wheelspacing            0.329f //差速车
 	#define   FOUR_WHEEL_DIFF_BS_wheelspacing  0.573f //四轮差速摆式悬挂
 	#define   FOUR_WHEEL_DIFF_DL_wheelspacing  0.573f //四轮差速独立悬挂
+	#define   CHAIR_DIFF_wheelspacing          0.625f //椅子
 	
 	//差速车无轴距数据
 	
 	//轮胎直径
 	#define   TOP_DIFF_WheelDiameter        0.125 //两轮差速主动轮直径
 	#define   FOUR_WHEEL_DIFF_WheelDiameter 0.215 //四轮差速主动轮直径
+	#define   CHAIR_DIFF_WheelDiameter      0.325 //椅子差速主动轮直径
 	
 #elif defined MEC_CAR
 	//麦轮小车的车型数量

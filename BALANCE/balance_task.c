@@ -1122,8 +1122,8 @@ static u8 Turn_Off(void)
     u8 temp = 0;
 	static uint8_t saveflag = 0;
 	
-	//电压不满足要求：电压低于20V,且不是自动回充状态.(若是进入自动回充状态,则忽略电压)
-	if( robot.voltage < 20.0f && charger.AllowRecharge==0 ) temp = 1;
+	//电压不满足要求：电压低于11V,且不是自动回充状态.(若是进入自动回充状态,则忽略电压)
+	if( robot.voltage < 11.0f && charger.AllowRecharge==0 ) temp = 1;
 
 	//急停开关被按下
 	if( EN==0 ) temp = 1;
