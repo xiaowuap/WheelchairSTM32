@@ -962,9 +962,10 @@ static void ResponseControl(void)
 	robot.MOTOR_A.Output = Incremental_MOTOR(&PI_MotorA,robot.MOTOR_A.Encoder,robot.MOTOR_A.Target);
 	robot.MOTOR_B.Output = Incremental_MOTOR(&PI_MotorB,robot.MOTOR_B.Encoder,robot.MOTOR_B.Target);
 	
-	if( robot.type<=1 )  Set_Pwm( robot.MOTOR_A.Output , robot.MOTOR_B.Output ,0,0,0);//高配差速-MD36电机
-	else                 Set_Pwm(-robot.MOTOR_A.Output ,-robot.MOTOR_B.Output ,0,0,0);//顶配差速-MD60电机
-	
+	if      ( robot.type<=1 )  Set_Pwm( robot.MOTOR_A.Output , robot.MOTOR_B.Output ,0,0,0);//高配差速-MD36电机
+	else if ( robot.type<=5 )  Set_Pwm(-robot.MOTOR_A.Output ,-robot.MOTOR_B.Output ,0,0,0);//顶配差速-MD60电机
+	else                       Set_Pwm(-robot.MOTOR_A.Output , robot.MOTOR_B.Output ,0,0,0);//其他车型
+
 	#elif defined MEC_CAR
 	
 	robot.MOTOR_A.Output = Incremental_MOTOR(&PI_MotorA,robot.MOTOR_A.Encoder,robot.MOTOR_A.Target);
@@ -1737,12 +1738,12 @@ static void Get_Robot_FeedBack(void)
 		//未完成自检时采集编码器数据进行判断
 		if( robot_check.check_end == 0 )
 		{
-			robot_check.check_a +=  Encoder_A_pr;
-			robot_check.check_b += -Encoder_B_pr;
+			robot_check.check_a += -Encoder_A_pr;
+			robot_check.check_b +=  Encoder_B_pr;
 		}
 		
-		robot.MOTOR_A.Encoder =   Encoder_A_pr*BALANCE_TASK_RATE/( robot.HardwareParam.Encoder_precision )* robot.HardwareParam.Wheel_Circ / LeftWheelDiff;
-		robot.MOTOR_B.Encoder = - Encoder_B_pr*BALANCE_TASK_RATE/( robot.HardwareParam.Encoder_precision )* robot.HardwareParam.Wheel_Circ / RightWheelDiff;	
+		robot.MOTOR_A.Encoder = - Encoder_A_pr*BALANCE_TASK_RATE/( robot.HardwareParam.Encoder_precision )* robot.HardwareParam.Wheel_Circ / LeftWheelDiff;
+		robot.MOTOR_B.Encoder =   Encoder_B_pr*BALANCE_TASK_RATE/( robot.HardwareParam.Encoder_precision )* robot.HardwareParam.Wheel_Circ / RightWheelDiff;	
 		
 	#elif defined MEC_CAR || defined _4WD_CAR	
 		//未完成自检时采集编码器数据进行判断
@@ -2001,7 +2002,7 @@ void FlashParam_Read(void)
 	
 	read = Read_Flash(4);//速度
 	if( read!=0xffffffff ) robot_control.rc_speed = *((float*)&read);
-	if( robot_control.rc_speed < 0 || robot_control.rc_speed > 10000 )//异常速度数据过滤
+	if( robot_control.rc_speed < 0 || robot_control.rc_speed > 20000 )//异常速度数据过滤
 		robot_control.rc_speed = 500;
 	
 	
