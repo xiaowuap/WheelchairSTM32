@@ -29,22 +29,22 @@ void Robot_Select(void)
 		case 1: Robot_Init(TypeNum,SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_51,GMR_500,SENIOR_AKM_WheelDiameter,SENIOR_AKM_MIN_TURN_RADIUS,0,VEL_KP,VEL_KI);break;
 		
 		//顶配摆式常规、重载
-		case 2: Robot_Init(TOP_AKM_BS_wheelspacing,TOP_AKM_BS_axlespacing,MD60N_18,GMR_500,TOP_AKM_BS_WheelDiameter,VEL_KP,VEL_KI);break;
-		case 3: Robot_Init(TOP_AKM_BS_wheelspacing,TOP_AKM_BS_axlespacing,MD60N_47,GMR_500,TOP_AKM_BS_WheelDiameter,VEL_KP,VEL_KI);break;
+		case 2: Robot_Init(TypeNum,TOP_AKM_BS_wheelspacing,TOP_AKM_BS_axlespacing,MD60N_18,GMR_500,TOP_AKM_BS_WheelDiameter,TOP_AKM_BS_MIN_TURN_RADIUS,0,VEL_KP,VEL_KI);break;
+		case 3: Robot_Init(TypeNum,TOP_AKM_BS_wheelspacing,TOP_AKM_BS_axlespacing,MD60N_47,GMR_500,TOP_AKM_BS_WheelDiameter,TOP_AKM_BS_MIN_TURN_RADIUS,0,VEL_KP,VEL_KI);break;
 		
-		//顶配独立常规、重载
-		case 4: Robot_Init(TOP_AKM_DL_wheelspacing,TOP_AKM_DL_axlespacing,MD60N_18,GMR_500,TOP_AKM_DL_WheelDiameter,400,100);break;
-		case 5: Robot_Init(TOP_AKM_DL_wheelspacing,TOP_AKM_DL_axlespacing,MD60N_47,GMR_500,TOP_AKM_DL_WheelDiameter,50,200);break;
+		//顶配独立常规、重载 - 优化PID参数减少过冲
+		case 4: Robot_Init(TypeNum,TOP_AKM_DL_wheelspacing,TOP_AKM_DL_axlespacing,MD60N_18,GMR_500,TOP_AKM_DL_WheelDiameter,TOP_AKM_DL_MIN_TURN_RADIUS,0,500,150);break;
+		case 5: Robot_Init(TypeNum,TOP_AKM_DL_wheelspacing,TOP_AKM_DL_axlespacing,MD60N_47,GMR_500,TOP_AKM_DL_WheelDiameter,TOP_AKM_DL_MIN_TURN_RADIUS,0,380,160);break;
 		
 		//预留非标定制车 车型
-		case 6: Robot_Init(SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_27,GMR_500,SENIOR_AKM_WheelDiameter,VEL_KP,VEL_KI);break;
+		case 6: Robot_Init(TypeNum,SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_27,GMR_500,SENIOR_AKM_WheelDiameter,SENIOR_AKM_MIN_TURN_RADIUS,0,VEL_KP,VEL_KI);break;
 		
 		//7、8安装测试使用车型
-		case 7: Robot_Init(SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_27,GMR_500,SENIOR_AKM_WheelDiameter,VEL_KP,VEL_KI);break;
-		case 8: Robot_Init(SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_27,GMR_500,SENIOR_AKM_WheelDiameter,VEL_KP,VEL_KI);break;
+		case 7: Robot_Init(TypeNum,SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_27,GMR_500,SENIOR_AKM_WheelDiameter,SENIOR_AKM_MIN_TURN_RADIUS,0,VEL_KP,VEL_KI);break;
+		case 8: Robot_Init(TypeNum,SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_27,GMR_500,SENIOR_AKM_WheelDiameter,SENIOR_AKM_MIN_TURN_RADIUS,0,VEL_KP,VEL_KI);break;
 		
-		//高速阿克曼(高配车型,5.18减速比电机)
-		case 9: Robot_Init(SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_5_18,GMR_500,SENIOR_AKM_WheelDiameter,200,50);break;
+		//高速阿克曼(高配车型,5.18减速比电机) - 优化PID参数减少过冲
+		case 9: Robot_Init(TypeNum,SENIOR_AKM_wheelspacing,SENIOR_AKM_axlespacing,MD36N_5_18,GMR_500,SENIOR_AKM_WheelDiameter,SENIOR_AKM_MIN_TURN_RADIUS,0,350,120);break;
 		
 		default:break;
 	}

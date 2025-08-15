@@ -229,8 +229,24 @@ static int Incremental_MOTOR(PI_CONTROLLER* p,float current,float target)
 	//计算偏差
 	p->Bias = target - current;
 	
-	//计算输出
-	p->Output += p->kp * ( p->Bias - p->LastBias ) + p->ki * p->Bias;
+	//改进的增量式PI控制算法，减少过冲
+	float proportional = p->kp * ( p->Bias - p->LastBias );
+	float integral = p->ki * p->Bias;
+	
+	//积分分离：当偏差较大时减少积分作用，减少过冲
+	if( fabs(p->Bias) > 0.3f ) {
+		integral *= 0.3f; //偏差大时积分系数降低
+	}
+	
+	//计算输出增量
+	int delta_output = proportional + integral;
+	
+	//输出增量限幅，防止输出变化过大
+	if( delta_output >  FULL_DUTYCYCLE/8 ) delta_output =  FULL_DUTYCYCLE/8;
+	if( delta_output < -FULL_DUTYCYCLE/8 ) delta_output = -FULL_DUTYCYCLE/8;
+	
+	//累加输出
+	p->Output += delta_output;
 	
 	//输出限幅
 	if( p->Output >   FULL_DUTYCYCLE ) p->Output =   FULL_DUTYCYCLE;
@@ -2218,13 +2234,17 @@ void ROBOT_CONTROL_t_Init(ROBOT_CONTROL_t* p)
 	//可调参数
 	p->limt_max_speed = 3.5f;    //机器人限制最大的运动速度 m/s
 	p->rc_speed = 500;           //机器人遥控速度基准,单位 mm/s
-	p->smooth_MotorStep = 0.05f; //机器人电机速度平滑步进值
-	p->smooth_ServoStep = 20;    //机器人舵机速度平滑步进值
+	p->smooth_MotorStep = 0.15f; //机器人电机速度平滑步进值 (增加了激进性)
+	p->smooth_ServoStep = 30;    //机器人舵机速度平滑步进值 (增加了激进性)
 	p->SoftWare_Stop = 0;        //机器人软件失能位
 	
 	//高速阿克曼车型,将最大运动速度限制设置为 6 m/s
 	#if defined AKM_CAR
-		if(robot.type==9) p->limt_max_speed = 6.0f;
+		if(robot.type==9) {
+			p->limt_max_speed = 6.0f;
+			p->smooth_MotorStep = 0.25f; //高速车型使用更激进的步进值
+			p->smooth_ServoStep = 40;    //舵机也更激进
+		}
 		p->ServoLow_flag = 0;//低速舵机模式默认关闭
 	#endif
 	

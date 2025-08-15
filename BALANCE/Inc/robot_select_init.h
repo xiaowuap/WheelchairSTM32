@@ -76,8 +76,8 @@ typedef struct
 #define   EncoderMultiples 4
 
 //默认PID参数
-#define VEL_KP 300
-#define VEL_KI 300
+#define VEL_KP 450
+#define VEL_KI 180
 
 //不同类别车型下的参数
 #if defined AKM_CAR

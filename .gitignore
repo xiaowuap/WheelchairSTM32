@@ -1,5 +1,74 @@
+# Keil uVision5 项目的 .gitignore 文件
+
+# VS Code 配置
 /.vscode
+
+# Keil uVision5 编译输出文件
+*.axf
+*.bin
+*.elf
+*.hex
+*.map
+*.lnp
+*.sct
+*.htm
+*.build_log.htm
+*.dep
+*.d
 *.crf
 *.o
-*.d
-*.axf
+*.lst
+*.plg
+*.tra
+*.bak
+
+# Keil uVision5 项目临时文件
+*.tmp
+*.__i
+*.__b
+*.uvguix.*
+*.uvoptx
+
+# 调试文件
+*.dbgconf
+*.jlink
+
+# 输出目录
+OBJ/
+Listings/
+Objects/
+RTE/
+EventRecorderStub.scvd
+
+# JLink 相关文件
+JLinkLog.txt
+JLinkSettings.ini
+
+# 备份文件
+*.orig
+
+# 系统文件
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE 配置文件 (保留项目设置，但排除用户特定设置)
+*.uvguix
+*.uvgui.*
+
+# Flash 下载配置
+*.ini
+
+# 文档和说明文件 (可选择性包含)
+# *.pdf
+# *.txt
+
+# 自定义排除项
+keilkilll.bat
+
+# 但是保留这些重要文件
+!*.uvprojx
+!*.uvoptx
+!startup_*.s
+!*.ld
+!*.icf
