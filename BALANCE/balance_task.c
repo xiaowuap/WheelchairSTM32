@@ -1251,7 +1251,7 @@ static void Remote_Control(void)
 
     //limiter //限幅
     int LX,LY,RY,RX,Remote_RCvelocity;
-	float base_vz = PI/4.0f ;//Z轴速度基准
+	float base_vz = PI/8.0f ;//Z轴速度基准
 	
 	//阿克曼Z轴代表左前轮角度,设置基准值为 30 度
 	#if defined AKM_CAR
