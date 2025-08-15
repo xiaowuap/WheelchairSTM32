@@ -2218,7 +2218,7 @@ void ROBOT_CONTROL_t_Init(ROBOT_CONTROL_t* p)
 	//可调参数
 	p->limt_max_speed = 3.5f;    //机器人限制最大的运动速度 m/s
 	p->rc_speed = 500;           //机器人遥控速度基准,单位 mm/s
-	p->smooth_MotorStep = 0.02f; //机器人电机速度平滑步进值
+	p->smooth_MotorStep = 0.05f; //机器人电机速度平滑步进值
 	p->smooth_ServoStep = 20;    //机器人舵机速度平滑步进值
 	p->SoftWare_Stop = 0;        //机器人软件失能位
 	
